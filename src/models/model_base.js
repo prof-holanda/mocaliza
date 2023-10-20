@@ -40,4 +40,4 @@ class ModelBase {
     }
 }
 
-export { ModelBase };
+module.exports = { ModelBase };

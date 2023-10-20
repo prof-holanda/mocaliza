@@ -1,4 +1,4 @@
-import { ModelBase } from'./model_base.js';
+const { ModelBase } = require('./model_base.js');
 
 class Category extends ModelBase {
     constructor(
@@ -26,4 +26,4 @@ class Category extends ModelBase {
     }
 }
 
-export { Category };
+module.exports = { Category };
