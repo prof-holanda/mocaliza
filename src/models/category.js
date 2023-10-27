@@ -1,29 +1,17 @@
-const { ModelBase } = require('./model_base.js');
+const { DataTypes } = require('sequelize');
+const { Database } = require('../configs/sequelize');
 
-class Category extends ModelBase {
-    constructor(
-        id,
-        name,
-        active = true,
-        createdAt = undefined,
-        updatedAt = undefined
-    ) {
-        super(id, active, updatedAt, createdAt);
+const Category = Database.getInstance().sequelize.define('Category', {
+    name: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
 
-        this._name = name;
+    active: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: true
     }
-
-    get name() {
-        return this._name;
-    }
-
-    set name(aName) {
-        this._name = aName;
-    }
-
-    static from(id, name, active, createdAt, updatedAt) {
-        return new Category(id, name, active, createdAt, updatedAt);
-    }
-}
+});
 
 module.exports = { Category };

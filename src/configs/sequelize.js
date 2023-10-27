@@ -4,7 +4,7 @@ class Database {
     static instance;
 
     constructor(dialect, databaseName) {
-        this.sequelize = new Sequelize({
+        this._sequelize = new Sequelize({
             dialect,
             storage: databaseName
         });
@@ -20,4 +20,14 @@ class Database {
 
         return Database.instance;
     }
+
+    get sequelize() {
+        return this._sequelize;
+    }
+
+    async sync() {
+       await this._sequelize.sync({ force: true }); 
+    }
 }
+
+module.exports = { Database };
