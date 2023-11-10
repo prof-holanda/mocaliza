@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/prof-holanda/mocaliza#readme",
   "dependencies": {
+    "body-parser": "^1.20.2",
     "express": "^4.18.2",
     "sequelize": "^6.33.0",
     "sqlite3": "^5.1.6"
