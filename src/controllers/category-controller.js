@@ -22,6 +22,8 @@ class CategoryController {
 	}
 	
 	async update(id, categoryDto) {
+		console.log('aki');
+
 		const category = await Category.findOne({ 
 			where: {
 				id: id

@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const { Database } = require('./configs/sequelize');
 const { CategoryController } = require('./controllers/category-controller.js');
@@ -10,6 +11,7 @@ const app = express();
 const categoryController = new CategoryController();
 
 app.use(bodyParser.json());
+app.use(cors({ origin: '*' }));
 
 app.get('/api/categories', async (req, res) => {
 	const categories = await categoryController.index();
@@ -63,9 +65,10 @@ app.put('/api/categories/:id', async (req, res) => {
 		name: req.body.name,
 		active: req.body.active,
 	};
+
 	
 	try {
-		const category = await categoryController.update(id, categoryDto);
+		const category = await categoryController.update(req.params.id, categoryDto);
 		
 		res.json({
 			data: category,
@@ -81,6 +84,6 @@ app.put('/api/categories/:id', async (req, res) => {
 app.listen(8000, async () => {
 	
 	
-	// await db.sync();
+	//await db.sync();
 	console.log('Server is running on port 8000!');
 });
